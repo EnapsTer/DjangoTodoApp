@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=64)),
-                ('posts', models.ManyToManyField(to='TodoApp.Task')),
+                ('posts', models.ManyToManyField(to='todoapp.Task')),
             ],
         ),
     ]

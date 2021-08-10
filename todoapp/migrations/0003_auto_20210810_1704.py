@@ -6,7 +6,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('TodoApp', '0002_rename_posts_tag_tasks'),
+        ('todoapp', '0002_rename_posts_tag_tasks'),
     ]
 
     operations = [

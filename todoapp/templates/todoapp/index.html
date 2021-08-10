@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Tasks</h1>
+{% for task in task_list %}
+    <h2>{{ task.title }}</h2>
+    <p>
+        {% for tag in task.tag_set.all %}
+            tags: {{ tag.name }}
+        {% endfor %}
+    </p>
+    <p>{{ task.about }}</p>
+    <p>{{ task.date_of_completion }}</p>
+    {% if task.completed %}
+        <p>completed</p>
+    {% else %}
+        <p>not completed</p>
+    {% endif %}
+{% endfor %}
+
+</body>
+</html>
