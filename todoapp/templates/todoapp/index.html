@@ -1,26 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>Tasks</h1>
-{% for task in task_list %}
-    <h2>{{ task.title }}</h2>
-    <p>
-        {% for tag in task.tag_set.all %}
-            tags: {{ tag.name }}
-        {% endfor %}
-    </p>
-    <p>{{ task.about }}</p>
-    <p>{{ task.date_of_completion }}</p>
-    {% if task.completed %}
-        <p>completed</p>
-    {% else %}
-        <p>not completed</p>
-    {% endif %}
-{% endfor %}
+{% extends "todoapp/base.html" %}
 
-</body>
-</html>
+{% block title %}
+    All tasks
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="d-flex justify-content-center">
+            <div class="row">
+                <h1>Задачи</h1>
+            </div>
+        </div>
+        {% for task in task_list %}
+            <div class="card text-center w-50 mx-auto my-5">
+                <div class="card-header">
+                    <h2>{{ task.title }}</h2>
+                </div>
+                {% if task.tag_set.all %}
+                    <div class="card-title">
+                        {% for tag in task.tag_set.all %}
+                            <a href="#">#{{ tag.name }}</a>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <div class="card-body">
+                    <div class="card-text">
+                        {% if task.about %}
+                            <p> {{ task.about }} </p>
+                        {% endif %}
+                        <p> {{ task.completed_text }} </p>
+                        {% if task.date_of_completion %}
+                            {% if task.is_expired %}
+                                <p class="text-danger">{{ task.date_of_completion }}</p>
+                            {% else %}
+                                <p class="text-primary"> {{ task.date_of_completion }} </p>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
