@@ -13,3 +13,9 @@ class TaskListView(generic.ListView):
         context = super().get_context_data(**kwargs)
         return context
 
+
+class TaskCreateView(generic.CreateView):
+    model = Task
+    template_name = 'todoapp/task_form.html'
+    fields = ['title', 'about', 'date_of_completion']
+

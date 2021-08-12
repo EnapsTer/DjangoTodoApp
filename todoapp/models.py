@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Task(models.Model):
@@ -19,6 +20,9 @@ class Task(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('index')
 
     class Meta:
         ordering = ['date_of_completion']
